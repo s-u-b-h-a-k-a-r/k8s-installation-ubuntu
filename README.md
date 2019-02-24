@@ -87,7 +87,7 @@
 
   ***Unix Command!!!***
   
- `$ k8s-installation/provisioning/prerequisites/install.sh`
+ `$ k8s-installation-ubuntu/provisioning/prerequisites/install.sh`
 
 
 ## ***Step 4***
