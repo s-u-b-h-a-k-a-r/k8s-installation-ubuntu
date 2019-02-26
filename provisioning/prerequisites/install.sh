@@ -16,7 +16,7 @@ echo "[TASK 2] Disable Swap"
 swapoff -a && sed -i '/swap/d' /etc/fstab
 
 echo "[TASK 3] openssh-server"
-apt-get install openssh-server  
+apt-get install openssh-server -y
 
 echo "[TASK 4] Install Docker"
 apt-get install -y docker.io
