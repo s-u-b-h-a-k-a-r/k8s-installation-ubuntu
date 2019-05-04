@@ -32,8 +32,3 @@ echo "[TASK 6] Install kubelet/kubeadm/kubectl"
 apt-get update -y
 apt-get install -y kubelet kubeadm kubectl 
 sed -i 's/cgroup-driver=systemd/cgroup-driver=cgroupfs/g' /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
-
-echo "[TASK 7] Configure System to use KubeConfig"
-cp /etc/kubernetes/admin.conf $HOME/
-chown $(id -u):$(id -g) $HOME/admin.conf
-echo 'export KUBECONFIG=$HOME/admin.conf' >> $HOME/.bashrc
