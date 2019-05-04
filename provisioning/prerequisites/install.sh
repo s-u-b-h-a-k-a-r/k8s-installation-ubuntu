@@ -35,4 +35,4 @@ sed -i 's/cgroup-driver=systemd/cgroup-driver=cgroupfs/g' /etc/systemd/system/ku
 echo "[TASK 7] Configure System to use KubeConfig"
 cp /etc/kubernetes/admin.conf $HOME/
 chown $(id -u):$(id -g) $HOME/admin.conf
-export KUBECONFIG=$HOME/admin.conf
+echo 'export KUBECONFIG=$HOME/admin.conf' >> $HOME/.bashrc
