@@ -29,6 +29,7 @@ deb http://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 
 echo "[TASK 6] Install kubelet/kubeadm/kubectl"
+apt-get update -y
 apt-get install -y kubelet kubeadm kubectl 
 sed -i 's/cgroup-driver=systemd/cgroup-driver=cgroupfs/g' /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 
