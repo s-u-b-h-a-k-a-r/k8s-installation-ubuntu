@@ -12,14 +12,20 @@ echo "[TASK 3] Install Calico"
 echo "[TASK 4] Display PODS"
 kubectl get pods --all-namespaces
 
-echo "[TASK 5] Install Dashboard"
+
+echo "[TASK 5] Install kubeconfig"
+$ mkdir -p $HOME/.kube
+$ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+$ sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+echo "[TASK 6] Install Dashboard"
 kubectl apply -f kubernetes-dashboard.yaml
 kubectl apply -f kubernetes-dashboard-rbac.yaml
 
-echo "[TASK 6] Display All Services"
+echo "[TASK 7] Display All Services"
 kubectl get services -n kube-system 
 
-echo "[TASK 7] Install NFS"
+
 figlet NFS
 apt-get install -y nfs-kernel-server
 apt-get install -y nfs-common
