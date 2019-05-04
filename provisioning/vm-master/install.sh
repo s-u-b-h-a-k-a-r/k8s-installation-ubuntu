@@ -5,12 +5,16 @@ figlet MASTER
 echo "[TASK 1] Start master"
 kubeadm init --ignore-preflight-errors all --pod-network-cidr=10.244.0.0/16 --token-ttl 0
 
-echo "[TASK 2] Install kubeconfig"
+echo "[TASK 2] Install kubeconfig and additional network components"
 mkdir -p $HOME/.kube
 cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 chown $(id -u):$(id -g) $HOME/.kube/config
 echo 'export KUBECONFIG=$HOME/.kube/config' >> $HOME/.bashrc
+echo "export kubever=$(kubectl version | base64 | tr -d '\n')" >> $HOME/.bashrc
 export KUBECONFIG=$HOME/.kube/config
+export kubever=$(kubectl version | base64 | tr -d '\n')
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+systemctl restart docker && systemctl restart kubelet
 
 echo "[TASK 3] Install Calico"
 kubectl apply -f https://docs.projectcalico.org/v3.0/getting-started/kubernetes/installation/hosted/kubeadm/1.7/calico.yaml 
